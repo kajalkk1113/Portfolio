@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kajal Kumari | Full-Stack Software Engineer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>\
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070f',
+                            card: 'rgba(13, 18, 36, 0.7)',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            accent: '#00f2fe',
+                            emerald: '#10b981',
+                            indigo: '#6366f1',
+                            purple: '#a855f7',
+                            pink: '#ec4899'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { opacity: '0.4', filter: 'blur(40px)' },
+                            '100%': { opacity: '0.8', filter: 'blur(60px)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="selection:bg-cyber-accent selection:text-black">
+
+    <!-- Ambient Glowing Background Orbs -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyber-accent/20 rounded-full animate-pulse-glow pointer-events-none z-0"></div>
+    <div class="fixed bottom-10 right-10 w-[30rem] h-[30rem] bg-cyber-purple/15 rounded-full animate-pulse-glow pointer-events-none z-0" style="animation-delay: 1.5s;"></div>
+    <div class="fixed top-1/2 right-1/3 w-80 h-80 bg-cyber-emerald/10 rounded-full animate-pulse-glow pointer-events-none z-0" style="animation-delay: 2.5s;"></div>
+
+    <!-- Floating Navbar -->
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50 transition-all duration-300">
+        <div class="glass-panel rounded-full px-5 py-3 flex items-center justify-between shadow-2xl">
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyber-accent to-cyber-purple flex items-center justify-center text-black font-mono font-bold text-sm shadow-lg group-hover:scale-110 transition-transform">
+                    KK
+                </div>
+                <span class="font-mono text-white font-bold tracking-tight text-base hidden sm:inline">Kajal Kumari</span>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center space-x-6 text-xs font-mono tracking-wider text-gray-300">
+                <a href="#about" class="hover:text-cyber-accent transition-colors">/ABOUT</a>
+                <a href="#skills" class="hover:text-cyber-accent transition-colors">/SKILLS</a>
+                <a href="#projects" class="hover:text-cyber-accent transition-colors">/PROJECTS</a>
+                <a href="#experience" class="hover:text-cyber-accent transition-colors">/TIMELINE</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="copyContact('kajalkk1113@gmail.com')" class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all">
+                    <i class="fa-regular fa-copy text-cyber-accent"></i>
+                    <span>Email</span>
+                </button>
+                <a href="https://github.com/kajalkk1113" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all">
+                    <i class="fa-brands fa-github text-cyber-accent"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#contact" class="px-4 py-2 text-xs font-semibold text-black bg-cyber-accent hover:bg-cyan-300 rounded-full transition-all shadow-lg shadow-cyber-accent/20 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Hire Me</span>
+                </a>
+                
+                <!-- Mobile Burger Button -->
+                <button id="mobile-toggle" class="md:hidden text-gray-300 hover:text-white p-2 text-lg">
+                    <i class="fa-solid fa-bars" id="burger-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-panel rounded-2xl p-6 space-y-4 font-mono text-sm border border-white/10 shadow-2xl">
+            <a href="#about" onclick="closeMobileMenu()" class="block text-gray-300 hover:text-cyber-accent py-1">/ABOUT</a>
+            <a href="#skills" onclick="closeMobileMenu()" class="block text-gray-300 hover:text-cyber-accent py-1">/SKILLS</a>
+            <a href="#projects" onclick="closeMobileMenu()" class="block text-gray-300 hover:text-cyber-accent py-1">/PROJECTS</a>
+            <a href="#playground" onclick="closeMobileMenu()" class="block text-gray-300 hover:text-cyber-accent py-1">/DEMO_LAB</a>
+            <a href="#experience" onclick="closeMobileMenu()" class="block text-gray-300 hover:text-cyber-accent py-1">/TIMELINE</a>
+            <a href="https://github.com/kajalkk1113" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-cyber-accent py-1">/GITHUB PROFILE</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="block text-cyber-accent font-semibold py-1">/GET IN TOUCH</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pt-32 pb-24">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-[80vh] flex flex-col justify-center items-center text-center relative pt-8">
+            <!-- Availability Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel border border-cyber-emerald/30 text-cyber-emerald text-xs font-mono mb-8 animate-float">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyber-emerald animate-ping"></span>
+                <span>Open for Junior Engineer & Full-Stack Internships</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
+                Architecting <span class="gradient-text">Scalable Web</span> Solutions
+            </h1>
+
+            <!-- Dynamic Typing Role -->
+            <div class="text-xl sm:text-2xl font-mono text-gray-300 mb-8 h-10 flex items-center justify-center gap-2">
+                <span class="text-cyber-accent">&gt;</span>
+                <span id="typing-text" class="typing-cursor font-semibold text-white"></span>
+            </div>
+
+            <!-- Bio Summary -->
+            <p class="max-w-2xl text-gray-400 text-base sm:text-lg leading-relaxed mb-10">
+                Full-Stack Developer specializing in building high-performance REST APIs, MongoDB data models, and modern React interfaces. Experienced in deploying complete web applications with clean, production-ready code.
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+                <a href="#projects" class="px-7 py-3.5 text-sm font-semibold text-black bg-gradient-to-r from-cyber-accent to-cyber-indigo hover:opacity-95 rounded-full transition-all shadow-xl shadow-cyber-accent/20 flex items-center gap-2">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>Explore Projects</span>
+                </a>
+                <button onclick="downloadResume()" class="px-7 py-3.5 text-sm font-semibold text-gray-200 glass-panel hover:bg-white/10 rounded-full transition-all border border-white/15 flex items-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down text-cyber-accent"></i>
+                    <span>Download Resume</span>
+                </button>
+            </div>
+
+            <!-- Quick Metrics Badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl">
+                <div class="glass-panel rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-cyber-accent font-mono">12+</div>
+                    <div class="text-xs text-gray-400 mt-1 font-mono">API Endpoints</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-cyber-purple font-mono">3+</div>
+                    <div class="text-xs text-gray-400 mt-1 font-mono">Full Web Apps</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-cyber-emerald font-mono">500+</div>
+                    <div class="text-xs text-gray-400 mt-1 font-mono">CodeChef Rating</div>
+                </div>
+                <div class="glass-panel rounded-2xl p-4 text-center">
+                    <div class="text-2xl sm:text-3xl font-extrabold text-cyber-pink font-mono">100%</div>
+                    <div class="text-xs text-gray-400 mt-1 font-mono">Responsive UI</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="space-y-12">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-xs font-mono text-cyber-accent tracking-widest uppercase mb-2">// 01. INTRO</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">About Kajal Kumari</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-accent to-cyber-purple rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <!-- Code Snippet Card / Tech Profile -->
+                <div class="md:col-span-5">
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <!-- Mac-style bar -->
+                        <div class="bg-gray-950/80 px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                            </div>
+                            <span class="text-xs font-mono text-gray-400"><i class="fa-solid fa-code text-cyber-accent mr-1"></i>profile.json</span>
+                        </div>
+                        <div class="p-5 font-mono text-xs sm:text-sm text-gray-300 space-y-2 leading-relaxed bg-black/40">
+                            <div><span class="text-cyber-purple">{</span></div>
+                            <div class="pl-4"><span class="text-cyber-accent">"developer"</span>: <span class="text-emerald-400">"Kajal Kumari"</span>,</div>
+                            <div class="pl-4"><span class="text-cyber-accent">"location"</span>: <span class="text-emerald-400">"India"</span>,</div>
+                            <div class="pl-4"><span class="text-cyber-accent">"degree"</span>: <span class="text-emerald-400">"BCA @ Eternal Univ."</span>,</div>
+                            <div class="pl-4"><span class="text-cyber-accent">"stack"</span>: [<span class="text-yellow-300">"React"</span>, <span class="text-green-400">"Node"</span>, <span class="text-cyan-300">"Express"</span>, <span class="text-emerald-300">"MongoDB"</span>],</div>
+                            <div class="pl-4"><span class="text-cyber-accent">"mentorship"</span>: <span class="text-emerald-400">"Academic Facilitator @ NavGurukul"</span>,</div>
+                            <div class="pl-4"><span class="text-cyber-accent">"certifications"</span>: <span class="text-emerald-400">"CodeChef Problem Solver"</span></div>
+                            <div><span class="text-cyber-purple">}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Cards -->
+                <div class="md:col-span-7 space-y-4">
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-cyber-accent/10 rounded-xl text-cyber-accent text-xl mt-1">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-1">Full-Stack Capability</h3>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    I bridge client-side experiences and server-side data architectures. From managing React application state to constructing robust Express.js API workflows and validating Mongoose schemas, I craft complete digital products.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-cyber-purple/10 rounded-xl text-cyber-purple text-xl mt-1">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-1">Peer Leader & Mentor</h3>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    As an Academic Facilitator at NavGurukul, I mentor aspiring developers in JavaScript fundamentals, algorithmic problem-solving, and clean coding practices through structured daily peer programming sessions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-cyber-emerald/10 rounded-xl text-cyber-emerald text-xl mt-1">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-1">Fintech & Product Research</h3>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    Gained industry perspective during my Young Founders School & PayPal internship, researching fintech partnership models and digital payment system workflows.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SKILLS MATRIX SECTION -->
+        <section id="skills" class="space-y-12">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-xs font-mono text-cyber-accent tracking-widest uppercase mb-2">// 02. TECH MATRIX</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Skills & Technologies</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-accent to-cyber-purple rounded-full mt-3"></div>
+            </div>
+
+            <!-- Skill Filter Tabs -->
+            <div class="flex justify-center flex-wrap gap-2 sm:gap-4 font-mono text-xs">
+                <button onclick="filterSkills('all')" class="skill-tab active px-5 py-2.5 rounded-full glass-panel border border-cyber-accent text-cyber-accent font-semibold transition-all" data-filter="all">
+                    /ALL_SKILLS
+                </button>
+                <button onclick="filterSkills('frontend')" class="skill-tab px-5 py-2.5 rounded-full glass-panel border border-white/10 text-gray-400 hover:text-white transition-all" data-filter="frontend">
+                    /FRONTEND
+                </button>
+                <button onclick="filterSkills('backend')" class="skill-tab px-5 py-2.5 rounded-full glass-panel border border-white/10 text-gray-400 hover:text-white transition-all" data-filter="backend">
+                    /BACKEND & DB
+                </button>
+                <button onclick="filterSkills('tools')" class="skill-tab px-5 py-2.5 rounded-full glass-panel border border-white/10 text-gray-400 hover:text-white transition-all" data-filter="tools">
+                    /TOOLS & DEPLOY
+                </button>
+            </div>
+
+            <!-- Skill Cards Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="skills-grid">
+                
+                <!-- JS -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="frontend">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-400/10 flex items-center justify-center text-yellow-400 text-xl font-bold">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">JavaScript (ES6+)</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Core Engine</p>
+                    </div>
+                </div>
+
+                <!-- React -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="frontend">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400 text-xl font-bold">
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">React.js</h4>
+                        <p class="text-[11px] font-mono text-gray-400">UI Framework</p>
+                    </div>
+                </div>
+
+                <!-- Node.js -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="backend">
+                    <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 text-xl font-bold">
+                        <i class="fa-brands fa-node-js"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Node.js</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Runtime</p>
+                    </div>
+                </div>
+
+                <!-- Express -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="backend">
+                    <div class="w-10 h-10 rounded-xl bg-gray-300/10 flex items-center justify-center text-gray-300 text-xl font-bold">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Express.js</h4>
+                        <p class="text-[11px] font-mono text-gray-400">API Middleware</p>
+                    </div>
+                </div>
+
+                <!-- MongoDB -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="backend">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-xl font-bold">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">MongoDB & Mongoose</h4>
+                        <p class="text-[11px] font-mono text-gray-400">NoSQL Database</p>
+                    </div>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="backend">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl font-bold">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Python</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Scripting & Logic</p>
+                    </div>
+                </div>
+
+                <!-- React Hooks & Router -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="frontend">
+                    <div class="w-10 h-10 rounded-xl bg-purple-400/10 flex items-center justify-center text-purple-400 text-xl font-bold">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Hooks & Router</h4>
+                        <p class="text-[11px] font-mono text-gray-400">State & Navigation</p>
+                    </div>
+                </div>
+
+                <!-- HTML5 & CSS3 -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="frontend">
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 text-xl font-bold">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">HTML5 / CSS3</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Responsive Layouts</p>
+                    </div>
+                </div>
+
+                <!-- Git & GitHub -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="tools">
+                    <div class="w-10 h-10 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-400 text-xl font-bold">
+                        <i class="fa-brands fa-git-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Git & GitHub</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Version Control</p>
+                    </div>
+                </div>
+
+                <!-- Postman -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="tools">
+                    <div class="w-10 h-10 rounded-xl bg-orange-600/10 flex items-center justify-center text-orange-500 text-xl font-bold">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Postman</h4>
+                        <p class="text-[11px] font-mono text-gray-400">API Validation</p>
+                    </div>
+                </div>
+
+                <!-- Vite -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="tools">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-300/10 flex items-center justify-center text-yellow-300 text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Vite</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Build Tool</p>
+                    </div>
+                </div>
+
+                <!-- Vercel & GitHub Pages -->
+                <div class="skill-card glass-panel glass-panel-hover rounded-2xl p-4 flex items-center gap-4" data-category="tools">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-300 text-xl font-bold">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Vercel & GH Pages</h4>
+                        <p class="text-[11px] font-mono text-gray-400">Deployment</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FEATURED PROJECTS SECTION -->
+        <section id="projects" class="space-y-12">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-xs font-mono text-cyber-accent tracking-widest uppercase mb-2">// 03. CASE STUDIES</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Featured Projects</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-accent to-cyber-purple rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: RESTful Backend API -->
+                <div class="glass-panel glass-panel-hover rounded-3xl overflow-hidden flex flex-col justify-between p-6 border border-white/10 group">
+                    <div>
+                        <!-- Header / Tag -->
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/30">
+                                Backend Architecture
+                            </span>
+                            <div class="flex items-center gap-3 text-gray-400">
+                                <a href="https://github.com/kajalkk1113/phase-6.git" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub Repository"><i class="fa-brands fa-github text-lg"></i></a>
+                                <a href="https://kajalkk1113.github.io/phase-6/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-accent transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+                                <button onclick="openProjectModal('api')" class="hover:text-cyber-accent transition-colors" title="View Case Study"><i class="fa-solid fa-expand text-base"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Graphic Preview -->
+                        <div class="bg-gray-950/90 rounded-2xl p-4 border border-white/5 mb-6 font-mono text-xs text-emerald-400 group-hover:border-cyber-purple/40 transition-colors">
+                            <div class="text-gray-500">// 12+ API Endpoints Created</div>
+                            <div class="text-purple-400 mt-1">POST <span class="text-white">/api/v1/feedback</span></div>
+                            <div class="text-cyan-400">GET  <span class="text-white">/api/v1/notes</span></div>
+                            <div class="text-green-400">PUT  <span class="text-white">/api/v1/tracker/:id</span></div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyber-accent transition-colors">
+                            RESTful Backend API Development
+                        </h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+                            Scalable Node.js & Express API suite delivering 4 distinct modules (Feedback Manager, Contact Form, Quick Notes, Progress Tracker) with MongoDB schema validation.
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">Node.js</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">Express.js</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">MongoDB</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">Postman</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <a href="https://kajalkk1113.github.io/phase-6/" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-cyber-purple/20 text-cyber-purple hover:bg-cyber-purple/30 border border-cyber-purple/40 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/kajalkk1113/phase-6.git" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-github"></i> GitHub Repo
+                            </a>
+                        </div>
+
+                        <button onclick="openProjectModal('api')" class="w-full py-2 rounded-xl text-xs font-mono text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                            <span>Deep Dive Case Study</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Student Task Manager -->
+                <div class="glass-panel glass-panel-hover rounded-3xl overflow-hidden flex flex-col justify-between p-6 border border-white/10 group">
+                    <div>
+                        <!-- Header / Tag -->
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                                React Application
+                            </span>
+                            <div class="flex items-center gap-3 text-gray-400">
+                                <a href="https://github.com/kajalkk1113/Task-Manager.git" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub Repository"><i class="fa-brands fa-github text-lg"></i></a>
+                                <a href="https://task-manager-kappa-tan.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-accent transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+                                <button onclick="openProjectModal('task')" class="hover:text-cyber-accent transition-colors" title="View Case Study"><i class="fa-solid fa-expand text-base"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Graphic Preview -->
+                        <div class="bg-gray-950/90 rounded-2xl p-4 border border-white/5 mb-6 font-mono text-xs text-gray-300 group-hover:border-cyber-accent/40 transition-colors">
+                            <div class="flex items-center justify-between text-cyber-accent mb-2">
+                                <span>[Task Dashboard]</span>
+                                <span class="text-[10px] bg-cyber-accent/20 text-cyber-accent px-2 py-0.5 rounded">Vercel Live</span>
+                            </div>
+                            <div class="text-xs text-gray-400">useState + useEffect React hooks managing task filtering & dark theme UI.</div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyber-accent transition-colors">
+                            Student Task Manager App
+                        </h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+                            Interactive single-page task tracking dashboard enabling real-time task creation, editing, status toggling, and category filtering.
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">React.js</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">Vite</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">React Router</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">Vercel</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <a href="https://task-manager-kappa-tan.vercel.app/" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-cyber-accent/20 text-cyber-accent hover:bg-cyber-accent/30 border border-cyber-accent/40 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/kajalkk1113/Task-Manager.git" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-github"></i> GitHub Repo
+                            </a>
+                        </div>
+
+                        <button onclick="openProjectModal('task')" class="w-full py-2 rounded-xl text-xs font-mono text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                            <span>Deep Dive Case Study</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Interactive Restaurant Platform -->
+                <div class="glass-panel glass-panel-hover rounded-3xl overflow-hidden flex flex-col justify-between p-6 border border-white/10 group">
+                    <div>
+                        <!-- Header / Tag -->
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                                DOM Manipulation
+                            </span>
+                            <div class="flex items-center gap-3 text-gray-400">
+                                <a href="https://github.com/kajalkk1113/Restaurant-webpage.git" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub Repository"><i class="fa-brands fa-github text-lg"></i></a>
+                                <a href="https://kajalkk1113.github.io/Restaurant-webpage/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-accent transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+                                <button onclick="openProjectModal('restaurant')" class="hover:text-cyber-accent transition-colors" title="View Case Study"><i class="fa-solid fa-expand text-base"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Graphic Preview -->
+                        <div class="bg-gray-950/90 rounded-2xl p-4 border border-white/5 mb-6 font-mono text-xs text-emerald-400 group-hover:border-cyber-emerald/40 transition-colors">
+                            <div class="flex items-center justify-between text-emerald-400 mb-2">
+                                <span>DOM Manipulator</span>
+                                <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">GH Pages</span>
+                            </div>
+                            <div class="text-xs text-gray-400">Native ES6+ DOM routines for live item injection and responsive flexbox rendering.</div>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyber-accent transition-colors">
+                            Restaurant Web Platform
+                        </h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+                            Multi-section restaurant frontend layout with interactive menu displays, customer authorization view, and administrative menu controller.
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">HTML5</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">CSS Flexbox</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300"> ES6+</span>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/5 text-gray-300">GitHub Pages</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <a href="https://kajalkk1113.github.io/Restaurant-webpage/" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-cyber-emerald/20 text-cyber-emerald hover:bg-cyber-emerald/30 border border-cyber-emerald/40 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/kajalkk1113/Restaurant-webpage.git" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl text-xs font-mono font-semibold bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-github"></i> GitHub Repo
+                            </a>
+                        </div>
+
+                        <button onclick="openProjectModal('restaurant')" class="w-full py-2 rounded-xl text-xs font-mono text-gray-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                            <span>Deep Dive Case Study</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+       
+
+
+        <!-- TIMELINE SECTION (EXPERIENCE & EDUCATION) -->
+        <section id="experience" class="space-y-12">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-xs font-mono text-cyber-accent tracking-widest uppercase mb-2">// 05. CAREER PATH</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Experience & Education</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-accent to-cyber-purple rounded-full mt-3"></div>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center space-x-4 font-mono text-xs">
+                <button onclick="switchTimelineTab('exp')" id="tab-btn-exp" class="px-6 py-2.5 rounded-full glass-panel border border-cyber-accent text-cyber-accent font-semibold transition-all">
+                    <i class="fa-solid fa-briefcase mr-2"></i> Experience & Leadership
+                </button>
+                <button onclick="switchTimelineTab('edu')" id="tab-btn-edu" class="px-6 py-2.5 rounded-full glass-panel border border-white/10 text-gray-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-graduation-cap mr-2"></i> Education & Certifications
+                </button>
+            </div>
+
+            <!-- Experience Timeline Container -->
+            <div id="timeline-exp" class="relative max-w-3xl mx-auto space-y-8 before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:-ml-px before:w-0.5 before:bg-gradient-to-b before:from-cyber-accent before:via-cyber-purple before:to-transparent">
+                
+                <!-- Item 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full glass-panel border border-cyber-accent text-cyber-accent font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-code text-xs"></i>
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono text-cyber-accent">Sep 2026 – Present</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-accent/10 text-cyber-accent">Active</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Academic Facilitator</h3>
+                        <p class="text-xs font-mono text-cyber-purple mb-3">NavGurukul</p>
+                        <ul class="text-xs text-gray-400 space-y-2 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-cyber-accent mt-0.5 text-[10px]"></i>
+                                <span>Facilitate daily peer coding sessions guiding students through JS fundamentals and logic building.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-cyber-accent mt-0.5 text-[10px]"></i>
+                                <span>Track student progress across technical learning modules and manage cohort schedules.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full glass-panel border border-cyber-purple text-cyber-purple font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-building-columns text-xs"></i>
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono text-cyber-purple">Aug 2026</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-purple/10 text-cyber-purple">Internship</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">YFS Intern</h3>
+                        <p class="text-xs font-mono text-gray-300 mb-3">Young Founders School & PayPal</p>
+                        <ul class="text-xs text-gray-400 space-y-2 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-cyber-purple mt-0.5 text-[10px]"></i>
+                                <span>Conducted structured case study research on fintech partnerships and payment workflows.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-cyber-purple mt-0.5 text-[10px]"></i>
+                                <span>Documented service expansion insights for digital platform users.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full glass-panel border border-cyber-emerald text-cyber-emerald font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-hand-holding-heart text-xs"></i>
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono text-cyber-emerald">Oct 2025</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-emerald/10 text-cyber-emerald">Volunteer</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Outreach Volunteer</h3>
+                        <p class="text-xs font-mono text-gray-300 mb-3">Akal Connect</p>
+                        <ul class="text-xs text-gray-400 space-y-2 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-cyber-emerald mt-0.5 text-[10px]"></i>
+                                <span>Engaged in student outreach presenting technology learning pathways to prospective learners.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Education Timeline Container -->
+            <div id="timeline-edu" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Degree Card -->
+                <div class="glass-panel glass-panel-hover rounded-3xl p-8 border border-white/10">
+                    <div class="w-12 h-12 rounded-2xl bg-cyber-accent/10 text-cyber-accent flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="text-xs font-mono text-cyber-accent uppercase tracking-wider">Formal Degree</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Bachelor of Computer Applications (BCA)</h3>
+                    <p class="text-sm font-mono text-gray-300 mt-1">Eternal University</p>
+                    <p class="text-xs font-mono text-gray-500 mt-4"><i class="fa-regular fa-calendar mr-2"></i>2025 – Present</p>
+                </div>
+
+                <!-- Certification Card -->
+                <div class="glass-panel glass-panel-hover rounded-3xl p-8 border border-white/10">
+                    <div class="w-12 h-12 rounded-2xl bg-cyber-purple/10 text-cyber-purple flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <span class="text-xs font-mono text-cyber-purple uppercase tracking-wider">Competitive Programming</span>
+                    <h3 class="text-xl font-bold text-white mt-1">CodeChef Problem Solving</h3>
+                    <p class="text-sm font-mono text-gray-300 mt-1">500+ Rating Profile Verification</p>
+                    <p class="text-xs font-mono text-gray-500 mt-4"><i class="fa-regular fa-calendar mr-2"></i>Issued Apr 2026</p>
+                    <a href="https://drive.google.com/file/d/1r-Z1z0o-I8c2J2CfCs0VD6aIvGSmKZr4/view?usp=sharing" target="_blank" class="text-xs font-mono text-gray-300 mt-4">view Certificate</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="space-y-12">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-xs font-mono text-cyber-accent tracking-widest uppercase mb-2">// 06. CONNECT</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Let's Work Together</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-accent to-cyber-purple rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Direct Info Cards -->
+                <div class="lg:col-span-5 space-y-4">
+                    <!-- Email Card -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyber-accent/10 text-cyber-accent flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono text-gray-400">Direct Email</span>
+                                <h4 class="text-sm font-bold text-white font-mono">kajalkk1113@gmail.com</h4>
+                            </div>
+                        </div>
+                        <button onclick="copyContact('kajalkk1113@gmail.com')" class="text-gray-400 hover:text-cyber-accent text-sm p-2" title="Copy Email">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Phone Card -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyber-purple/10 text-cyber-purple flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono text-gray-400">Phone Contact</span>
+                                <h4 class="text-sm font-bold text-white font-mono">+91-9877843746</h4>
+                            </div>
+                        </div>
+                        <button onclick="copyContact('+919877843746')" class="text-gray-400 hover:text-cyber-purple text-sm p-2" title="Copy Phone">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Location Card -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyber-emerald/10 text-cyber-emerald flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-mono text-gray-400">Location</span>
+                            <h4 class="text-sm font-bold text-white font-mono">India (Open for Remote & Onsite)</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form onsubmit="handleContactSubmit(event)" class="glass-panel rounded-3xl p-8 space-y-4 border border-white/10">
+                        <h3 class="text-lg font-bold text-white font-mono mb-4">Send Direct Message</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1">Your Name</label>
+                                <input type="text" required placeholder="Jane Doe" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-accent font-sans">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1">Your Email</label>
+                                <input type="email" required placeholder="jane@company.com" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-accent font-sans">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-gray-400 mb-1">Subject</label>
+                            <input type="text" required placeholder="Job Opportunity / Engineering Role" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-accent font-sans">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-gray-400 mb-1">Message</label>
+                            <textarea rows="4" required placeholder="Hi Kajal, we reviewed your portfolio and would love to interview you..." class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyber-accent font-sans"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-cyber-accent to-cyber-indigo text-black font-bold text-sm rounded-xl hover:opacity-95 transition-all shadow-xl shadow-cyber-accent/20 flex items-center justify-center gap-2 font-mono">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>SEND MESSAGE</span>
+                        </button>
+
+                        <div id="contact-success-toast" class="hidden p-3 rounded-xl bg-cyber-emerald/20 border border-cyber-emerald/40 text-cyber-emerald text-xs font-mono text-center">
+                            ✓ Message dispatched successfully! Kajal will contact you shortly.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black/60 relative z-10 py-10 font-mono text-xs text-gray-400">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-white font-bold">&lt;KajalKumari /&gt;</span>
+                <span>• Full-Stack Engineer</span>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <a href="https://github.com/kajalkk1113" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-accent" title="GitHub Profile"><i class="fa-brands fa-github text-lg"></i></a>
+                <a href="mailto:kajalkk1113@gmail.com" class="hover:text-cyber-accent" title="Send Email"><i class="fa-solid fa-envelope text-lg"></i></a>
+            </div>
+
+            <div>
+                &copy; <span id="year-span"></span> Kajal Kumari. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- DYNAMIC PROJECT DEEP-DIVE MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-white/15 relative overflow-y-auto max-h-[90vh] shadow-2xl space-y-6">
+            <button onclick="closeProjectModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modal-content">
+                <!-- Dynamic insertion -->
+            </div>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
